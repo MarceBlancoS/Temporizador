@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizador</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="contenedor">
+        <div class="moneda" id="moneda" onclick="tomarTiempo()">
+            <div class="lado frente" id="frente"></div>
+            <div class="lado atras" id="atras"></div>
+        </div>
+    </div>
+    <script>
+        let tiempo = 10
+        let contador = 0
+        let contando = false
+
+       
+
+        function temporizar() {
+            let t = tiempo - contador
+            contando = t > 0
+            if (contador % 2 == 0) {
+                select_id("frente").innerHTML = t
+                clic1.play()
+            } else {
+                select_id("atras").innerHTML = t
+                clic2.play()
+            }
+            style("moneda").transform = `rotateY(${180 * contador}deg)`
+            if (contando) {
+                contador++
+                setTimeout(() => {
+                    temporizar()
+                }, 1000);
+            }else{
+                suspender()
+                suspender_sonido.play()
+            }
+        }
+
+       
+    </script>
+    
+</body>
+</html>
